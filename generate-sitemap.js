@@ -1,23 +1,23 @@
-// generate-sitemap.js
 const fs = require("fs");
 const path = require("path");
 
-const BASE_URL = "https://iamdurgesh.vercel.app"; // ← change if needed
+const BASE_URL = "https://iamdurgesh.vercel.app";
 
-const pages = [
-  "/", // homepage
-  "/#about",
-  "/#skills",
-  "/#projects",
-  "/#experience",
-  "/#contact",
-];
+const pages = ["/", "/#about", "/#skills", "/#projects", "/#experience", "/#contact"];
 
-const today = new Date().toISOString().split("T")[0];
+const isValidPath = (page) => typeof page === "string" && page.startsWith("/");
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+const buildSitemap = () => {
+  const today = new Date().toISOString().split("T")[0];
+  const filteredPages = pages.filter(isValidPath);
+
+  if (filteredPages.length !== pages.length) {
+    console.warn("⚠️ Some sitemap paths were ignored because they were invalid.");
+  }
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages
+${filteredPages
   .map(
     (page) => `
   <url>
@@ -28,6 +28,23 @@ ${pages
   )
   .join("")}
 </urlset>`;
+};
 
-fs.writeFileSync(path.join(__dirname, "public", "sitemap.xml"), sitemap);
-console.log("✅ Sitemap generated!");
+const writeSitemap = () => {
+  try {
+    const publicDir = path.join(__dirname, "public");
+    const sitemapPath = path.join(publicDir, "sitemap.xml");
+
+    if (!fs.existsSync(publicDir)) {
+      throw new Error("public directory not found");
+    }
+
+    fs.writeFileSync(sitemapPath, buildSitemap(), "utf8");
+    console.log(`✅ Sitemap generated: ${sitemapPath}`);
+  } catch (error) {
+    console.error("❌ Failed to generate sitemap:", error.message);
+    process.exitCode = 1;
+  }
+};
+
+writeSitemap();

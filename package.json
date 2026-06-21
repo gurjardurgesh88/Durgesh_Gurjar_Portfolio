@@ -2,16 +2,38 @@
   "name": "durgesh-portfolio",
   "version": "1.0.0",
   "private": true,
+  "description": "Personal portfolio website of Durgesh Gurjar built with React, Vite, and Tailwind CSS.",
+  "keywords": [
+    "portfolio",
+    "react",
+    "vite",
+    "tailwindcss",
+    "frontend",
+    "web-development",
+    "emailjs"
+  ],
+  "author": "Durgesh Gurjar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gurjardurgesh88/Durgesh_Gurjar_Portfolio.git"
+  },
+  "engines": {
+    "node": ">=18.18.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate-sitemap": "node generate-sitemap.js"
+    "generate-sitemap": "node generate-sitemap.js",
+    "lint": "eslint src --ext js,jsx --max-warnings 0",
+    "format:check": "prettier --check .",
+    "audit": "npm audit --audit-level=moderate"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.1.0",
     "lucide-react": "^0.522.0",
     "react": "^18.2.0",
@@ -20,9 +42,16 @@
     "tailwindcss-dark-mode-plugin": "^1.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@vitejs/plugin-react": "^4.5.1",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
     "postcss": "^8.5.4",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.17",
     "vite": "^4.5.0"
   }

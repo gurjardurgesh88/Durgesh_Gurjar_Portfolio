@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 /* -----------------------------------
-   Global Body Theme
+   Global Theme
 ------------------------------------ */
 html {
   scroll-behavior: smooth;
+  background-color: #000;
 }
 
 body {
@@ -18,7 +19,7 @@ html.dark body {
 }
 
 /* -----------------------------------
-   Glassmorphism Effects
+   Glassmorphism
 ------------------------------------ */
 .glass-effect {
   background: rgba(255, 255, 255, 0.05);
@@ -32,7 +33,7 @@ html.dark .glass-effect {
 }
 
 /* -----------------------------------
-   Component Styles Layer
+   Component Utilities
 ------------------------------------ */
 @layer components {
   .neon-border {
@@ -56,7 +57,6 @@ html.dark .glass-effect {
   }
 }
 
-/* Remove neon glow in light mode */
 html.dark .neon-glow,
 html.dark .neon-glow-purple,
 html.dark .neon-glow-pink {
@@ -64,7 +64,7 @@ html.dark .neon-glow-pink {
 }
 
 /* -----------------------------------
-   Utility Animations Layer
+   Animations
 ------------------------------------ */
 @layer utilities {
   @keyframes fade-in {
@@ -126,8 +126,23 @@ html.dark .neon-glow-pink {
   .animate-slide-right {
     animation: slide-right 0.6s ease-out forwards;
   }
-}
-html {
-  scroll-behavior: smooth;
-  background-color: #000; /* fallback if JS fails */
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-16px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
 }
