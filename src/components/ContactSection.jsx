@@ -23,8 +23,8 @@ const ContactSection = () => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_4ylvhkt",
-        "template_2nnneka",
+        "service_x2vjv8s",
+        "template_4605caq",
         formRef.current,
         "HhZExZ2M17HCwGGVd"
       )
