@@ -39,7 +39,8 @@ const writeSitemap = () => {
       throw new Error("public directory not found");
     }
 
-    fs.writeFileSync(sitemapPath, buildSitemap(), "utf8");
+    const sitemapXml = buildSitemap();
+    fs.writeFileSync(sitemapPath, sitemapXml, "utf8");
     console.log(`✅ Sitemap generated: ${sitemapPath}`);
   } catch (error) {
     console.error("❌ Failed to generate sitemap:", error.message);
